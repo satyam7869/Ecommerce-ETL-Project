@@ -1,3 +1,16 @@
 APP_NAME = "Ecommerce ETL Project"
-
 MASTER = "local[*]"
+
+RAW_DATA_PATH = "data/raw"
+PROCESSED_DATA_PATH = "data/processed"
+DIRTY_DATA_PATH = "data/dirty"
+
+CUSTOMER_FILE = "olist_customers_dataset.csv"
+ORDERS_FILE = "olist_order_items_dataset.csv"
+PRODUCTS_FILE = "olist_products_dataset.csv"
+GEO_LOCATION_FILE = "olist_geolocation_dataset.csv"
+ORDER_ITEMS = "olist_order_items_dataset.csv"
+ORDER_PAYMENTS = "olist_order_payments_dataset.csv"
+ORDER_REVIEWS = "olist_order_reviews_dataset.csv"
+SELLERS_FILE = "olist_sellers_dataset.csv"
+PRODUCT_CATEGORY = "product_category_name_translation.csv"
