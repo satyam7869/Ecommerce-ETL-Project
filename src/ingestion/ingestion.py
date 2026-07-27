@@ -1,3 +1,4 @@
+from pyspark.sql.functions import *
 from src.common.spark_session import create_spark_session
 from src.common.logger import get_logger
 from src.common.file_reader import read_csv
@@ -17,9 +18,10 @@ customer_df = read_csv(spark, str(customer_path), schema = customer_schema)
 
 logger.info("Customer Data read sucessfully.")
 
-customer_df.show(5)
 customer_df.printSchema()
+customer_df.show()
+#customer_df.orderBy(col("customer_zip_code_prefix").asc()).show(50)
+print(customer_df.count())
 
 spark.stop()
-
 logger.info("Spark Session Stopped")
