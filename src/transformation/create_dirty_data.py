@@ -28,6 +28,7 @@ dirty_df = customer_df.withColumn("customer_state", \
 # Introduce Duplicates
 duplicate_df = dirty_df.limit(10)
 dirty_df = dirty_df.union(duplicate_df)
+dirty_df.orderBy(col("customer_zip_code_prefix").asc()).show()
 
 # Write Dirty Dataset
 dirty_output = Path(DIRTY_DATA_PATH) / CUSTOMER_FILE
