@@ -21,23 +21,6 @@ def introduce_invalid_values(df, column_name, condition, invalid_value):
         .otherwise(col(column_name))
     )
 
-dirty_config = [
-        {
-            "type": "null",
-            "column": "customer_city",
-            "condition": col("customer_zip_code_prefix") < 10005
-        },
-        {
-            "type": "duplicate",
-            "number_of_rows": 10
-        },
-        {
-            "type": "invalid",
-            "column": "customer_state",
-            "condition": col("customer_zip_code_prefix") > 99990,
-            "invalid_value": "XYZ"
-        }]
-
 
 def create_dirty_dataset(df, dirty_config):
 
@@ -66,5 +49,4 @@ def create_dirty_dataset(df, dirty_config):
                 config["condition"],
                 config["invalid_value"]
             )
-
     return df
