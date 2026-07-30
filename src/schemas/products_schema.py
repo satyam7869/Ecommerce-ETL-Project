@@ -1,6 +1,6 @@
 from pyspark.sql.types import *
 
-customer_schema = StructType([
+products_schema = StructType([
     StructField("product_id", StringType(), True),
     StructField("product_category_name", StringType(), True),
     StructField("product_name_lenght", IntegerType(), True),
