@@ -50,3 +50,20 @@ clean_df.coalesce(1) \
 
 spark.stop()    
 
+# Import:
+from config.dataset_config import DATASETS
+from src.transformation.clean_data_utils import clean_dataset
+
+# Loop:
+for dataset_name, config in DATASETS.items():
+
+# Read Dirty Dataset
+    input_path = Path(DIRTY_DATA_PATH) / config["file"]
+
+    df = read_csv(spark, str(input_path), schema = config["schema"])
+
+# Clean
+clean_df = clean_dataset(df, config["clean_config"])
+
+# Write Processed Dataset
+ouput_path = Path( PROCESSED_DATA_PATH)/ config["file"]
