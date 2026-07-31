@@ -4,6 +4,8 @@ MASTER = "local[*]"
 RAW_DATA_PATH = "data/raw"
 PROCESSED_DATA_PATH = "data/processed"
 DIRTY_DATA_PATH = "data/dirty"
+JOINED_DATA_PATH = "data/joined"
+TRANSFORMED_DATA_PATH = "data/transformed"
 
 CUSTOMER_FILE = "olist_customers_dataset.csv"
 ORDERS_FILE = "olist_orders_dataset.csv"
