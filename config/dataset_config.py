@@ -10,42 +10,49 @@ from src.schemas.product_category_schema import product_category_schema
 from src.schemas.products_schema import products_schema
 from src.schemas.sellers_schema import sellers_schema
 
-from config.app_config import RAW_DATA_PATH, DIRTY_DATA_PATH, CUSTOMER_FILE, ORDERS_FILE, PRODUCTS_FILE, GEO_LOCATION_FILE, ORDER_ITEMS, ORDER_PAYMENTS, ORDER_REVIEWS, SELLERS_FILE, PRODUCT_CATEGORY
+#from src.transformation.run_cleaning import VALID_STATES
+from config.app_config import RAW_DATA_PATH, DIRTY_DATA_PATH, CUSTOMER_FILE, ORDERS_FILE
+
+VALID_STATES = [
+    "SP","RJ","MG","ES","PR","SC","RS","GO",
+    "BA","PE","CE","PB","DF","MT","MS","TO",
+    "PA","AM","RR","RO","AC","AP","MA","PI",
+    "RN","AL","SE"
+]
 
 DATASETS = {
-    "customers": {"file": CUSTOMER_FILE, "schema": customer_schema, 
+    "customers": {"file": CUSTOMER_FILE, 
+    "schema": customer_schema, 
     "dirty_config": [
-
             {
                 "type": "null",
                 "column": "customer_city",
-                "condition": col("customer_zip_code_prefix") < 10005
+                "condition_column": "customer_zip_code_prefix",
+                "operator": "<",
+                "value": 10005
             },
-
             {
                 "type": "duplicate",
                 "number_of_rows": 10
             },
-
             {
                 "type": "invalid",
                 "column": "customer_state",
-                "condition": col("customer_zip_code_prefix") > 99990,
+                "condition_column": "customer_zip_code_prefix",
+                "operator": ">",
+                "value": 99990,
                 "invalid_value": "XYZ"
-            }]
+            }],
             
-    "clean_config" = [
-
+    "clean_config" : [
             {
             "type": "duplicate"
             },
-
             {
             "type": "null",
             "column": "customer_city",
             "replacement": "Unknown"
             },
-
             {
             "type": "invalid",
             "column": "customer_state",
@@ -59,21 +66,24 @@ DATASETS = {
             {
                 "type": "null",
                 "column": "order_status",
-                "condition": col("order_id").startswith("00")
+                "condition_column": "order_id",
+                "operator": "startswith",
+                "value": "00"
+                #"condition": col("order_id").startswith("00")
             },
-
             {
                 "type": "duplicate",
                 "number_of_rows": 10                      
             },
-
             {
-
                 "type": "invalid",
                 "column": "order_status",
-                "condition": col("order_id").startswith("ff"),
+                "condition_column": "order_id",
+                "operator": "startswith",
+                "value": "ff",
+                #"condition": col("order_id").startswith("ff"),
                 "invalid_value": "INVALID_STATUS"
-            }]
+            }],
             
     "clean_config": [
         {

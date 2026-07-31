@@ -25,13 +25,15 @@ def introduce_invalid_values(df, column_name, condition, invalid_value):
 def create_dirty_dataset(df, dirty_config):
 
     for config in dirty_config:
+        #print(config)
 
         if config["type"] == "null":
 
             df = introduce_nulls(
                 df,
                 config["column"],
-                config["condition"]
+                #config["condition"]
+                col(config["condition_column"]) < config["value"]
             )
 
         elif config["type"] == "duplicate":
@@ -46,9 +48,9 @@ def create_dirty_dataset(df, dirty_config):
             df = introduce_invalid_values(
                 df,
                 config["column"],
-                config["condition"],
+                col(config["condition_column"]) > config["value"],
                 config["invalid_value"]
-            )
+)
     return df
 
     

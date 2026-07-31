@@ -29,17 +29,21 @@
 #
 #spark.stop()
 
-
+from pathlib import Path
+from src.common.file_reader import read_csv
 from src.transformation.dirty_data_utils import create_dirty_dataset
 from src.common.spark_session import create_spark_session
 from config.app_config import DIRTY_DATA_PATH, RAW_DATA_PATH, PROCESSED_DATA_PATH, CUSTOMER_FILE
-from config.dataset_config.py import DATASETS
+from config.dataset_config import DATASETS
 
 # Create Spark Session
 spark = create_spark_session()
 
 for dataset_name, config in DATASETS.items():
     input_path = Path(RAW_DATA_PATH)/ config["file"]
+    #print(dataset_name)
+    #print(config["file"])
+    #print(config["schema"])
 
     df = read_csv(spark, 
     str(input_path), 

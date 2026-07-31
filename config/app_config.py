@@ -6,7 +6,7 @@ PROCESSED_DATA_PATH = "data/processed"
 DIRTY_DATA_PATH = "data/dirty"
 
 CUSTOMER_FILE = "olist_customers_dataset.csv"
-ORDERS_FILE = "olist_order_items_dataset.csv"
+ORDERS_FILE = "olist_orders_dataset.csv"
 PRODUCTS_FILE = "olist_products_dataset.csv"
 GEO_LOCATION_FILE = "olist_geolocation_dataset.csv"
 ORDER_ITEMS = "olist_order_items_dataset.csv"
