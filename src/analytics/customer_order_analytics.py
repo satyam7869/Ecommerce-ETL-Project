@@ -10,9 +10,3 @@ input_path = Path(TRANSFORMED_DATA_PATH) / "customer_orders"
 
 customer_orders_df = read_csv(spark, str(input_path))
 
-# State-wise Total Orders
-state_orders_df = customer_orders_df.groupBy("customer_state").agg(count("order_id").alias("total_orders"))
-#state_orders_df.show(truncate=False)
-
-# State-wise Revenue
-state_revenue_df = customer_orders_df.groupbby("customer_state"),agg(sum(""))

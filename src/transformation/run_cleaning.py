@@ -7,7 +7,7 @@ from config.app_config import DIRTY_DATA_PATH, PROCESSED_DATA_PATH, CUSTOMER_FIL
 
 spark = create_spark_session()
 
-dirty_path = Path(DIRTY_DATA_PATH) / CUSTOMER_FILE
+#dirty_path = Path(DIRTY_DATA_PATH) / CUSTOMER_FILE
 
 #customer_df = read_csv(spark, str(dirty_path), schema = customer_schema)
 #
